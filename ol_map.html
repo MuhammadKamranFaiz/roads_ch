@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- opelayers css-->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@main/dist/en/v7.0.0/legacy/ol.css">
+
+    <link rel="icon" type="image/png" href="images/ahoy.png" />
+
+
+    <!-- Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+    <!-- jquery 3.6 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="apis/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Local css  -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+
+    </style>
+    <script src="apis/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!--Openlayers-->
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@main/dist/en/v7.0.0/legacy/ol.js"></script>
+
+    <!-- Highchart scripts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!-- Highchart scripts -->
+
+
+
+    <title>AHOY</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 1fr 1fr;">
+
+            <div>
+                <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none "
+                    id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="images/ahoy.png" style="margin: 10px 10px 10px 10px" alt="AHOY" href="#"
+                        style="width:50px">
+
+                </a>
+
+            </div>
+
+            <div>
+                <h2 class="fw-bold" style="text-align: center; font-family: Comfortaa;color: #2F4F4F"> Traffic Data</h2>
+            </div>
+
+            <div class="d-flex align-items-end justify-content-end">
+
+
+                <!-- <div class="flex-shrink-0 dropdown">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+                        data-bs-toggle="dropdown" style="font-family: Comfortaa;font-weight: 200;"
+                        aria-expanded="false">
+                         <img src="img/user.jpg" alt="mdo" width="32" height="32" class="rounded-circle"> -->
+                <!-- </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                        <li><a class="dropdown-item" style="font-family: Comfortaa;font-weight: 200;" href="logout">Sign
+                                out</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        </div>
+    </header>
+    <div class="w-auto p-0 container-fluid">
+        <div class="d-grid" style="grid-template-columns: 1fr 4fr; ">
+
+            <div>
+                <div class="bg-light border">
+
+                    <div class="panel-heading text-white"
+                        style="border-radius: 0; color:#ffffff; padding: 5px; display:block; background:#2FA085;font-family: Comfortaa;">
+                        <h3 clsss="panel-title" style="font-weight: 200;  font-size: 20px; margin-bottom: 0;">Controls
+                        </h3>
+                    </div>
+                    <form action="#" class="form-horizontal" method="post">
+                        <div class="form-group ">
+                            <div class="w-auto p-0 container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <!-- <div class="input-group-addon">
+                                        <i class="fa fa-calendar">
+                                        </i>
+                                    </div>
+                                    <input class="form-control" id="date" name="date"
+                                        placeholder="Select Date | MM-DD-YYYY" type="text"
+                                        style="border-radius: 0px;" /> -->
+                                            <div class="col-sm-4">
+                                                <label for="startTime">Start Time</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="datetime-local" id="startTime" name="startTime" min="2022-03-01T00:00" max="2022-04-30T23:59"
+                                                    style="width:150pt;padding: 0,0,0,0;">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label for="endTime">End Time</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="datetime-local" id="endTime" name="endTime" min="2022-03-01T00:00" max="2022-04-30T23:59"
+                                                    style="width:150pt;padding: 0,0,0,0;">
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="road_type_radio" id="1"
+                                                checked>
+                                            <label class="form-check-label" for="road_type_1">
+                                                Primary Road
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="road_type_radio" id="2">
+                                            <label class="form-check-label" for="road_type_2">
+                                                Secondary Road
+                                            </label>
+                                        </div>
+                                        <!-- <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+                                                style="background:#2FA085;border-radius: 0px; width: 122%;">
+                                                Selection AOI Options
+                                            </button>
+                                            <ul class="dropdown-menu" id="aoi_select"
+                                                aria-labelledby="dropdownMenuButton1"
+                                                style="border-radius: 0px; width: 122%;">
+                                                <li><a class="dropdown-item" id="road_name">Enter Road name</a></li>
+                                                <li><a class="dropdown-item" id="aoi">Draw AOI</a></li>
+                                            </ul>
+                                        </div>
+                                        </b><br /> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="road_name_selection">
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="road_name">Raod</span>
+                                <input type="text" class="form-control" placeholder="Road Name" aria-label="RoadName"
+                                    aria-describedby="basic-addon1" id="road_name" name="road_name">
+                            </div>
+                            <button class="btn btn-primary" name="submit_road" id="submit_road" type="button"
+                                style="background:#2FA085;border-radius: 0px; width:100%;">
+                                Submit
+                            </button>
+
+                        </div>
+                        <!-- <div class="h-divider">
+                            <div class="shadow" style="box-shadow: 0 .5rem 1rem #F8F9FA!important;"></div>
+                            <div class="text"><i>OR</i></div>
+                        </div> -->
+                        <br>
+                        <p style="color:#2F4F4F;font-size:20px;text-align: center;font-weight: bold;">OR</p>
+                        
+                        <div class="form-group" id="aoi_selection">                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button class="btn btn-primary " name="draw_extent" id="getExtent" type="button"
+                                        style="background:#2FA085;border-radius: 0px;width:100%;">
+                                        Draw AOI
+                                    </button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-primary " name="clear" id="clear_data" type="button"
+                                        style="background:#2FA085; border-radius: 0px;width:100%;">
+                                        Clear Selection
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    </b><br />
+                    </b><br />
+                    <div id="legend" style="visibility: hidden;">
+                        <div class="panel-heading text-white"
+                            style="border-radius: 0; color:#ffffff; padding: 5px; display:block; background:#2FA085;font-family: Comfortaa;">
+                            <h3 clsss="panel-title" style="font-weight: 200;  font-size: 20px; margin-bottom: 0;">
+                                Overspeed
+                            </h3>
+                        </div>
+
+                        <div class="w-auto p-0 container-fluid " id="toc_div">
+                            <!-- <div class="w-auto p-0 container-fluid"> -->
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    0
+                                </div>
+                                <div class="col-sm-4">
+                                    <hr
+                                        style="height:3px; width:70%; border-width:0; color:rgba(56, 168, 0, 0.5); background-color:rgba(56, 168, 0, 0.5); opacity: 1; ">
+                                </div>
+                                <div class="col-sm-8">
+                                    1 - 20%
+                                </div>
+                                <div class="col-sm-4">
+                                    <hr
+                                        style="height:3px; width:70%; border-width:0; color:rgba(230, 230, 0, 0.5); background-color:rgba(230, 230, 0, 0.5); opacity: 1;">
+                                </div>
+                                <div class="col-sm-8">
+                                    21 - 40%
+                                </div>
+                                <div class="col-sm-4">
+                                    <hr
+                                        style="height:3px; width:70%; border-width:0; color:rgba(255, 170, 0, 0.5); background-color:rgba(255, 170, 0, 0.5); opacity: 1;">
+                                </div>
+                                <div class="col-sm-8">
+                                    41 - 60%
+                                </div>
+                                <div class="col-sm-4">
+                                    <hr
+                                        style="height:3px; width:70%; border-width:0; color:rgba(205, 170, 102, 0.5); background-color:rgba(205, 170, 102, 0.5); opacity: 1;">
+                                </div>
+                                <div class="col-sm-8">
+                                    61 - 80%
+                                </div>
+                                <div class="col-sm-4">
+                                    <hr
+                                        style="height:3px; width:70%; border-width:0; color:rgba(197, 0, 255, 0.5); background-color:rgba(197, 0, 255, 0.5); opacity: 1;">
+                                </div>
+                                <div class="col-sm-8">
+                                    81 - 100%
+                                </div>
+                                <div class="col-sm-4">
+                                    <hr
+                                        style="height:4px; width:70%; border-width:0; color:rgba(230, 0, 0, 1); background-color:rgba(230, 0, 0, 1); opacity: 1;">
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="bg-light border ">
+                <div class="panel-heading text-white"
+                    style="border-radius: 0; color:#ffffff; padding: 5px; display:block; background:#2FA085;font-family: Comfortaa;">
+                    <h3 clsss="panel-title" style="font-weight: 200;  font-size: 20px; margin-bottom: 0;">Map</h3>
+                </div>
+                <div class="bg-light" id="map">
+
+                </div>
+                <!-- Popup -->
+
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content" style="width: max-content"></div>
+                </div>
+
+                <!-- end popup -->
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="charts_modal" tabindex="-1" aria-labelledby="charts_modal" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Survey Route</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid h-100 w-100">
+                            <div class="row w-100">
+
+                                <div id="vidDiv" class="col-md-6" style="height:380px">
+                                    <video id="vid" class="w-100 h-100" muted>
+                                        <source src="" type=video/mp4>
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div id="bottomPanel">
+                                        <div id="timeInfo">
+                                            <div style="color:white;">Video Track <span id="daterange"></span></div>
+                                            <div id="timeSliderDiv"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="mapDiv" class="col-md-6 w-50" style="height:380px">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="charts_modal" tabindex="-1" aria-labelledby="charts_modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content"  >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="OverspeedModalLabel" style="color:#2F4F4F;">Overspeed Analytics</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" >
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+                        </figure>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" style="background:#2FA085;border-radius: 0px;" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- End Modal -->
+
+
+
+    </div>
+    </div>
+    <!-- Include Date Range Picker -->
+
+
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <script src="js/main.js"></script>
+</body>
+
+</html>
