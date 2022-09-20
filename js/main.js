@@ -120,7 +120,7 @@ var map = new ol.Map({
         // center: ol.proj.fromLonLat([46.753202, 24.727579]),
         center: [46.753202, 24.727579],
         projection: 'EPSG:4326',
-        zoom: 8
+        zoom:11
     })
 });
 
